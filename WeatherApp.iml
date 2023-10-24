@@ -7,5 +7,27 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES />
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$USER_HOME$/Downloads/gson-main/examples/android-proguard-example/src" />
+          <root url="file://$USER_HOME$/Downloads/gson-main/extras/src/main/java" />
+          <root url="file://$USER_HOME$/Downloads/gson-main/extras/src/test/java" />
+          <root url="file://$USER_HOME$/Downloads/gson-main/graal-native-image-test/src/test/java" />
+          <root url="file://$USER_HOME$/Downloads/gson-main/gson/src/main/java" />
+          <root url="file://$USER_HOME$/Downloads/gson-main/gson/src/main/java-templates" />
+          <root url="file://$USER_HOME$/Downloads/gson-main/gson/src/test/java" />
+          <root url="file://$USER_HOME$/Downloads/gson-main/metrics/src/main/java" />
+          <root url="file://$USER_HOME$/Downloads/gson-main/proto/src/main/java" />
+          <root url="file://$USER_HOME$/Downloads/gson-main/proto/src/test/java" />
+          <root url="file://$USER_HOME$/Downloads/gson-main/shrinker-test/src/main/java" />
+          <root url="file://$USER_HOME$/Downloads/gson-main/shrinker-test/src/test/java" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="gson" level="project" />
+    <orderEntry type="library" name="gson" level="application" />
   </component>
 </module>

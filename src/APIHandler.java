@@ -7,8 +7,11 @@ import java.util.ArrayList;
 public class APIHandler {
 
     void callAPI() {
+        //String apiKey = "8044c498e29af2db48f9a3e41021aa7d";
+        //String apiURL = "http://api.weatherstack.com/current?access_key=8044c498e29af2db48f9a3e41021aa7d&query=Budapest";
+
         try {
-            URL url = new URL("https://openweathermap.org/api");
+            URL url = new URL("http://api.weatherstack.com/current?access_key=8044c498e29af2db48f9a3e41021aa7d&query=Budapest");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
             BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
