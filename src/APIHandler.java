@@ -2,10 +2,10 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 public class APIHandler {
-git
     void callAPI(String cityName) {
         String apiKey = "8044c498e29af2db48f9a3e41021aa7d";
         String apiURL = "http://api.weatherstack.com/current?access_key=" + apiKey + "&query=" + cityName;
@@ -25,6 +25,16 @@ git
             System.out.println(response.toString());
 
             connection.disconnect();
+
+            JsonParser jsonParser = new JsonParser();
+            JsonObject jsonResponse = (JsonObject) jsonParser.parse(response.toString());
+
+            if (jsonResponse.has("current")) {
+                JsonObject currentData = jsonResponse.getAsJsonObject("current");
+                if (currentData.has("temperature")) {
+                    double temperature = currentData.get("temperature").getAsDouble();
+                }
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
