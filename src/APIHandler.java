@@ -2,11 +2,13 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 public class APIHandler {
-    void callAPI(String cityName) {
+    WeatherInfo callAPI(String cityName) {
         String apiKey = "8044c498e29af2db48f9a3e41021aa7d";
         String apiURL = "http://api.weatherstack.com/current?access_key=" + apiKey + "&query=" + cityName;
 
@@ -31,14 +33,20 @@ public class APIHandler {
 
             if (jsonResponse.has("current")) {
                 JsonObject currentData = jsonResponse.getAsJsonObject("current");
-                if (currentData.has("temperature")) {
-                    double temperature = currentData.get("temperature").getAsDouble();
-                }
+                double temperature = currentData.get("temperature").getAsDouble();
+                JsonArray weatherDescriptions = currentData.getAsJsonArray("weather_descriptions");
+
+                String firstDescription = weatherDescriptions.size() > 0 ? weatherDescriptions.get(0).getAsString() : "N/A";
+
+                WeatherInfo weatherInfo = new WeatherInfo(cityName, temperature, firstDescription);
+                return weatherInfo;
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        return null;
     }
 
 }

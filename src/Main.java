@@ -25,6 +25,8 @@ public class Main {
 
         JLabel temperatureLabel = new JLabel();
 
+        JLabel descriptionLabel = new JLabel();
+
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10); //padding
         gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -51,6 +53,9 @@ public class Main {
         gbc.gridy = 3;
         panel.add(temperatureLabel, gbc);
 
+        gbc.gridy = 4;
+        panel.add(descriptionLabel, gbc);
+
         frame.add(panel);
         frame.setVisible(true);
 
@@ -61,18 +66,19 @@ public class Main {
             public void actionPerformed(ActionEvent e) {
                 String cityName = searchBar.getText();
                 if (!cityName.isEmpty()) {
-                    apiHandler.callAPI(cityName);
+                    WeatherInfo weatherInfo = apiHandler.callAPI(cityName);
 
-                    cityLabel.setText("City: " + cityName);
-
-                    String temperature = getTemperatureFromAPI(cityName);
-                    temperatureLabel.setText("Temperature: " + temperature);
+                    if (weatherInfo != null) {
+                        cityLabel.setText("City: " + weatherInfo.getCityName());
+                        temperatureLabel.setText("Temperature: " + weatherInfo.getTemperature() + " °C");
+                        descriptionLabel.setText("Description: " + weatherInfo.getWeatherDescription());
+                    } else {
+                        cityLabel.setText("City: N/A");
+                        temperatureLabel.setText("Temperature: N/A");
+                        descriptionLabel.setText("Description: N/A");
+                    }
                 }
             }
         });
-    }
-
-    private static String getTemperatureFromAPI(String cityName) {
-        return "19°C";
     }
 }
